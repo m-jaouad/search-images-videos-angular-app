@@ -1,0 +1,12 @@
+<div class="card">
+  <img [src]="img" />
+
+  <div class="container-tags">
+    <button (click)="showImage(imgLarge)">Show Image</button>
+    <div>
+      <span (click)="tagSearch(tag)" class="tag" *ngFor="let tag of tagsList">
+        {{ tag }}
+      </span>
+    </div>
+  </div>
+</div>

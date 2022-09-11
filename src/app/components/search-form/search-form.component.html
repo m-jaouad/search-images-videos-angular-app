@@ -1,0 +1,37 @@
+<div class="container">
+  <h1 class="title">Search any kind of Images or vedios</h1>
+  <h3>download for free images , vedios and use them with your editing work</h3>
+
+  <form [formGroup]="searchForm">
+    <input
+      type="text"
+      class="textbox"
+      placeholder="Search Images or Videos "
+      formControlName="keyWord"
+    />
+    <input
+      title="Search"
+      value=""
+      class="button"
+      type="submit"
+      (click)="searchResouces($event)"
+    />
+  </form>
+</div>
+
+<div
+  class="images"
+  infinite-scroll
+  [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="1000"
+  (scrolled)="onScroll()"
+>
+  <app-image-item
+    *ngFor="let image of hits; let i = index"
+    [img]="image.webformatURL"
+    [imgLarge]="image.largeImageURL"
+    [tags]="image.tags"
+    [index]="i"
+    (newItemEvent)="searchTag($event)"
+  ></app-image-item>
+</div>

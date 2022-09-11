@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="img-wrapper">
+    <img [src]="url" alt="" />
+
+    <div class="actions">
+      <button class="button" (click)="onClose()">Cancel</button>
+      <button class="button" (click)="downloadImage(url)">Download</button>
+    </div>
+  </div>
+
+  <div *ngIf="index != 0" (click)="showPrevious()" class="left"><</div>
+  <div
+    *ngIf="index != resourcesService.hits.length - 1"
+    (click)="showNext()"
+    class="right"
+  >
+    >
+  </div>
+</div>

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: "Roboto", Tahoma, Arial, sans-serif;
+  line-height: 1.5;
+  font-size: 13px;
+}
