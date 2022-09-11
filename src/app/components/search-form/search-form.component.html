@@ -19,11 +19,11 @@
   </form>
 </div>
 
+<!--todo: [infiniteScrollThrottle]="1000" -->
 <div
   class="images"
   infinite-scroll
   [infiniteScrollDistance]="2"
-  [infiniteScrollThrottle]="1000"
   (scrolled)="onScroll()"
 >
   <app-image-item

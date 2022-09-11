@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ResourcesService } from 'src/app/services/resources.service';
 
@@ -13,7 +14,10 @@ export class SearchFormComponent implements OnInit {
   hits!: any[];
   page: number = 1;
 
-  constructor(private resourcesService: ResourcesService) {}
+  constructor(
+    private resourcesService: ResourcesService,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({
@@ -40,13 +44,10 @@ export class SearchFormComponent implements OnInit {
   }
 
   searchTag(event: any) {
-    console.log(event);
-
     this.searchForm.controls['keyWord'].setValue(event);
-    console.log(this.searchForm.value);
-
-    // this.searchResouces(event);
     this.fetchData();
+    console.log('value is :' + this.searchForm.value.keyWord);
+    this.scrollToTop();
   }
 
   fetchData() {
@@ -62,5 +63,16 @@ export class SearchFormComponent implements OnInit {
           console.log(err);
         },
       });
+  }
+
+  scrollToTop() {
+    (function smoothscroll() {
+      var currentScroll =
+        document.documentElement.scrollTop || document.body.scrollTop;
+      if (currentScroll > 0) {
+        window.requestAnimationFrame(smoothscroll);
+        window.scrollTo(0, currentScroll - currentScroll / 8);
+      }
+    })();
   }
 }
